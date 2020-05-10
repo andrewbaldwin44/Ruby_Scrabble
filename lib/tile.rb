@@ -1,3 +1,5 @@
+require_relative '../lib/scoring'
+
 class Tile
   TILES = {
     A: 1,  N: 1,
@@ -15,14 +17,18 @@ class Tile
     M: 3,  Z: 10
   }
 
+  include Scoring
+
   def initialize(letters)
     @letters = letters.upcase.chars.map(&:intern)
   end
 
+  private
   attr_reader :letters
+
+  public
 
   def values
     @values ||= letters.map(&TILES)
   end
 end
-
