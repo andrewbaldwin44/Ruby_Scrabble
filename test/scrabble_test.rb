@@ -2,6 +2,7 @@ require "minitest/autorun"
 require "minitest/pride"
 require_relative '../lib/tile'
 require_relative '../lib/scoring'
+require_relative '../lib/board'
 
 describe Tile do
   it 'must score a single letter' do
@@ -36,5 +37,23 @@ describe Scoring do
 
   it 'must score a word with capitilization' do
     expect(Tile.new('OXYPHENBUTAZONE').score).must_equal 41
+  end
+end
+
+describe Board do
+  it 'must double letters' do
+    expect(Tile.new('mellifluous').double_letters('lf').score).must_equal 21
+  end
+
+  it 'must triple letters' do
+    expect(Tile.new('somnambulist').triple_letters('b').score).must_equal 24
+  end
+
+  it 'must double words' do
+    expect(Tile.new('effervescence').double_word.score).must_equal 52
+  end
+
+  it 'must triple words' do
+    expect(Tile.new('ineffable').triple_word.score).must_equal 51
   end
 end

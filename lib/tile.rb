@@ -1,4 +1,5 @@
 require_relative '../lib/scoring'
+require_relative '../lib/board'
 
 class Tile
   TILES = {
@@ -18,13 +19,15 @@ class Tile
   }
 
   include Scoring
+  include Board
 
   def initialize(letters)
     @letters = letters.upcase.chars.map(&:intern)
   end
 
-  private
+  protected
   attr_reader :letters
+  attr_accessor :values
 
   public
 
