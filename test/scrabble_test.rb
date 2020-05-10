@@ -56,4 +56,16 @@ describe Board do
   it 'must triple words' do
     expect(Tile.new('ineffable').triple_word.score).must_equal 51
   end
+
+  it 'must double and triple letters' do
+    expect(Tile.new('petrichor').double_letters('p').triple_letters('h').score).must_equal 27
+  end
+
+  it 'must double and triple word' do
+    expect(Tile.new('syzygy').double_word.triple_word.score).must_equal 150
+  end
+
+  it 'must double and triple word and double and triple letters' do
+    expect(Tile.new('oxazepam').double_letters('xp').triple_letters('z').double_word.triple_word.score).must_equal 354
+  end
 end
