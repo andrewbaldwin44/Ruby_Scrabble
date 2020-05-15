@@ -20,10 +20,6 @@ class Tile
     M: 3,  Z: 10
   }
 
-  include Scoring
-  include Board
-  include Validate
-
   def initialize(letters)
     @letters = letters.upcase.chars.map(&:intern)
   end

@@ -1,6 +1,13 @@
 require_relative "../lib/style.rb"
 require_relative "../bin/input.rb"
 require_relative "../lib/tile.rb"
+require_relative '../lib/scoring'
+require_relative '../lib/validator'
+require_relative '../lib/board'
+
+Tile.include Scoring
+Tile.include Validate
+Tile.include Board
 
 clear_screen = ->{print `clear`}
 welcome_screen = ->{puts "\n#{"Welcome to Scrabble!".red_white_highlight.center(70)}\n\n\n"}

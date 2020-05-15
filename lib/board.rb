@@ -1,4 +1,6 @@
 module Board
+  SIZE = 15
+
   def multiply_tiles(tiles, multiplier)
     tiles.chars.map do |tile|
       letter_index = letters.index(tile.upcase.intern)

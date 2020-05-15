@@ -1,5 +1,5 @@
 module Scoring
   def score
-    values.sum if valid_letters?
+    values.sum if valid?
   end
 end

@@ -23,6 +23,7 @@ describe Tile do
 end
 
 describe Scoring do
+  Tile.include Scoring
   it 'must score a single letter' do
     expect(Tile.new('z').score).must_equal 10
   end
@@ -41,6 +42,7 @@ describe Scoring do
 end
 
 describe Board do
+  Tile.include Board
   it 'must double letters' do
     expect(Tile.new('mellifluous').double_letters('lf').score).must_equal 21
   end
