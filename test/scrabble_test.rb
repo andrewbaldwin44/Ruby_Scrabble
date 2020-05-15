@@ -62,7 +62,7 @@ describe Board do
   end
 
   it 'must double and triple word' do
-    expect(Tile.new('syzygy').double_word.triple_word.score).must_equal 150
+    expect(Tile.new('defenestration').double_word.triple_word.score).must_equal 108
   end
 
   it 'must double and triple word and double and triple letters' do

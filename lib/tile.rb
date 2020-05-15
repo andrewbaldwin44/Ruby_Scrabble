@@ -1,5 +1,6 @@
 require_relative '../lib/scoring'
 require_relative '../lib/board'
+require_relative '../lib/validator'
 
 
 class Tile
@@ -21,6 +22,7 @@ class Tile
 
   include Scoring
   include Board
+  include Validate
 
   def initialize(letters)
     @letters = letters.upcase.chars.map(&:intern)
