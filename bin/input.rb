@@ -1,22 +1,23 @@
-module UserInput
-  def self.get_play_mode
-    play_mode = gets.chomp
-
-    unless play_mode == '1' || play_mode == '2' || \
-            play_mode == 'single player' || play_mode == 'multiplayer'
-      puts "Please enter 1 for single player or 2 for multiplayer".red_highlight
-      play_mode = get_play_mode
-    end
-    play_mode
+module Input
+  def get_input
+    @@input = gets.chomp
   end
 
-  def self.get_user_word
-    word = gets.chomp
+  def validate_play_mode
+    play_mode_answers = ['single player', 'multiplayer', '1', '2']
 
-    unless word.match(/[[:alpha:]]/)
-      puts "Please enter a valid word".red_highlight
-      word = get_user_word
+    until play_mode_answers.include?(@@input)
+      puts "Please enter 1 for single player or 2 for multiplayer".red_highlight
+      @@input = get_input
     end
-    word
+    @@input
+  end
+
+  def validate_word
+    until @@input.match(/^[[:alpha:]]+$/)
+      puts "Your word must only contain letters".red_highlight
+      @@input = get_input
+    end
+    @@input
   end
 end

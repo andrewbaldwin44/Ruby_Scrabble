@@ -17,9 +17,10 @@ module Validate
 
   def letter_count
     letters.each_with_object(Hash.new(0)) { |letter, hash| hash[letter] += 1}
+    letter_count.all? { |letters, amount| TILE_DISTRIBUTION[letters] >= amount}
   end
 
   def valid?
-    letters.length <= Board::SIZE && letter_count.all? { |letters, amount| TILE_DISTRIBUTION[letters] >= amount}
+    letters.length <= Board::SIZE
   end
 end
