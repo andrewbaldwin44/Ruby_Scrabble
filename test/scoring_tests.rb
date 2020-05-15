@@ -23,4 +23,8 @@ describe Scoring do
   it 'must score a word with capitilization' do
     expect(Tile.new('OXYPHENBUTAZONE').score).must_equal 41
   end
+
+  it 'must score a word with blanks' do
+    expect(Tile.new('misanthro e').score).must_equal 15
+  end
 end

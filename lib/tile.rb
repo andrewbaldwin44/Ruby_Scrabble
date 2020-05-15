@@ -17,7 +17,8 @@ class Tile
     J: 8,  W: 4,
     K: 5,  X: 8,
     L: 1,  Y: 4,
-    M: 3,  Z: 10
+    M: 3,  Z: 10,
+    ' ': 0
   }
 
   def initialize(letters)

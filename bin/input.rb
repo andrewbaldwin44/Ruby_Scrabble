@@ -14,7 +14,7 @@ module Input
   end
 
   def validate_word
-    until @@input.match(/^[[:alpha:]]+$/)
+    until @@input.match(/^[A-Za-z ]+$/)
       puts "Your word must only contain letters".red_highlight
       @@input = get_input
     end

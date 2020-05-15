@@ -36,4 +36,8 @@ describe Board do
   it 'must double and triple word and double and triple letters' do
     expect(Tile.new('oxazepam').double_letters('xp').triple_letters('z').double_word.triple_word.score).must_equal 354
   end
+
+  it 'must multiply a word with blanks' do
+    expect(Tile.new('ram unctious').double_letters('m').double_word.triple_word.score).must_equal 108
+  end
 end

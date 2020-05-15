@@ -12,15 +12,15 @@ module Validate
     V: 2,   W: 2,
     Y: 2,   K: 1,
     J: 1,   X: 1,
-    Q: 1,   Z: 1
+    Q: 1,   Z: 1,
+    ' ': 2
   }
 
   def letter_count
     letters.each_with_object(Hash.new(0)) { |letter, hash| hash[letter] += 1}
-    letter_count.all? { |letters, amount| TILE_DISTRIBUTION[letters] >= amount}
   end
 
   def valid?
-    letters.length <= Board::SIZE
+    letters.length <= Board::SIZE && letter_count.all? { |letters, amount| TILE_DISTRIBUTION[letters] >= amount}
   end
 end
