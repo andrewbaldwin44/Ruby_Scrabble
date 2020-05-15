@@ -34,8 +34,6 @@ class Tile
 
   public
 
-  public
-
   def values
     @values ||= letters.map(&TILES)
   end
