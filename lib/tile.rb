@@ -1,6 +1,7 @@
 require_relative '../lib/scoring'
 require_relative '../lib/board'
 
+
 class Tile
   TILES = {
     A: 1,  N: 1,
@@ -25,9 +26,13 @@ class Tile
     @letters = letters.upcase.chars.map(&:intern)
   end
 
+
   protected
+
   attr_reader :letters
   attr_accessor :values
+
+  public
 
   public
 
