@@ -3,12 +3,10 @@ require 'minitest/pride'
 require_relative '../lib/board'
 require_relative '../lib/tile'
 require_relative '../lib/scoring'
-require_relative '../lib/validator'
 
 describe Board do
   Tile.include Board
   Tile.include Scoring
-  Tile.include Validate
   it 'must double letters' do
     expect(Tile.new('mellifluous').double_letters('lf').score).must_equal 21
   end

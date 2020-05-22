@@ -1,7 +1,5 @@
 require_relative '../lib/scoring'
 require_relative '../lib/board'
-require_relative '../lib/validator'
-
 
 class Tile
   TILES = {

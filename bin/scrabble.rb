@@ -3,10 +3,8 @@ require_relative "../bin/input.rb"
 require_relative '../lib/scoring'
 require_relative "../lib/style.rb"
 require_relative "../lib/tile.rb"
-require_relative '../lib/validator'
 
 Tile.include Scoring
-Tile.include Validate
 Tile.include Board
 
 include Input

@@ -1,5 +1,5 @@
 module Scoring
   def score
-    values.sum if valid?
+    values.sum
   end
 end
