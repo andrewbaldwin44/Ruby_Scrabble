@@ -1,5 +1,4 @@
 require_relative '../lib/board'
-require_relative "../bin/input.rb"
 require_relative '../lib/scoring'
 require_relative "../lib/style.rb"
 require_relative "../lib/tile.rb"
@@ -7,7 +6,6 @@ require_relative "../lib/tile.rb"
 Tile.include Scoring
 Tile.include Board
 
-include Input
 include TextStyles
 
 puts "\n#{"Welcome to Scrabble!".red_white_highlight.center(70)}\n\n\n"
