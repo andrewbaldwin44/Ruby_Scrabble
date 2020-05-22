@@ -1,41 +1,37 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require_relative '../lib/board'
-require_relative '../lib/tile'
-require_relative '../lib/scoring'
 
 describe Board do
-  Tile.include Board
-  Tile.include Scoring
   it 'must double letters' do
-    expect(Tile.new('mellifluous').double_letters('lf').score).must_equal 21
+    expect(Board.new('mellifluous').multiply('lf', 2).score).must_equal 21
   end
 
   it 'must triple letters' do
-    expect(Tile.new('somnambulist').triple_letters('b').score).must_equal 24
+    expect(Board.new('somnambulist').multiply('b', 3).score).must_equal 24
   end
 
   it 'must double words' do
-    expect(Tile.new('effervescence').double_word.score).must_equal 52
+    expect(Board.new('effervescence').word_times(2).score).must_equal 52
   end
 
   it 'must triple words' do
-    expect(Tile.new('ineffable').triple_word.score).must_equal 51
+    expect(Board.new('ineffable').word_times(3).score).must_equal 51
   end
 
   it 'must double and triple letters' do
-    expect(Tile.new('petrichor').double_letters('p').triple_letters('h').score).must_equal 27
+    expect(Board.new('petrichor').multiply('p', 2).multiply('h', 3).score).must_equal 27
   end
 
   it 'must double and triple word' do
-    expect(Tile.new('defenestration').double_word.triple_word.score).must_equal 108
+    expect(Board.new('defenestration').word_times(2).word_times(3).score).must_equal 108
   end
 
   it 'must double and triple word and double and triple letters' do
-    expect(Tile.new('oxazepam').double_letters('xp').triple_letters('z').double_word.triple_word.score).must_equal 354
+    expect(Board.new('oxazepam').multiply('xp', 2).multiply('z', 3).word_times(2).word_times(3).score).must_equal 354
   end
 
   it 'must multiply a word with blanks' do
-    expect(Tile.new('ram unctious').double_letters('m').double_word.triple_word.score).must_equal 108
+    expect(Board.new('ram unctious').multiply('m', 2).word_times(2).word_times(3).score).must_equal 108
   end
 end

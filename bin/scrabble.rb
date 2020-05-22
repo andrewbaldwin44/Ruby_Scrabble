@@ -3,7 +3,6 @@ require_relative '../lib/scoring'
 require_relative "../lib/tile.rb"
 
 Tile.include Scoring
-Tile.include Board
 
 puts "\n#{"Welcome to Scrabble!".center(70)}\n\n\n"
 

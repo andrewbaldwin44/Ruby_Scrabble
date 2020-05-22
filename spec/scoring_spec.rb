@@ -1,6 +1,5 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require_relative '../lib/board'
 require_relative '../lib/tile'
 require_relative '../lib/scoring'
 

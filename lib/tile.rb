@@ -1,6 +1,3 @@
-require_relative '../lib/scoring'
-require_relative '../lib/board'
-
 class Tile
   TILES = {
     A: 1,  N: 1,
@@ -22,7 +19,6 @@ class Tile
   def initialize(letters)
     @letters = letters.upcase.chars.map(&:intern)
   end
-
 
   protected
 
