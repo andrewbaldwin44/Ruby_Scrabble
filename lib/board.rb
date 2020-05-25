@@ -2,9 +2,9 @@ require_relative '../lib/tile'
 require_relative '../lib/scoring'
 
 class Board < Tile
-  DEFAULT_SIZE = 15
+  SIZE = 15
 
-  def initialize(tiles, size = DEFAULT_SIZE)
+  def initialize(tiles, size = SIZE)
     @game_tiles = Tile.new(tiles)
     @values = @game_tiles.values
     @size = size
