@@ -13,7 +13,9 @@ class Board < Tile
   include Scoring
 
   private
-  attr_reader :game_tiles, :values, :size
+
+  attr_accessor :values
+  attr_reader :game_tiles, :size
 
   public
 

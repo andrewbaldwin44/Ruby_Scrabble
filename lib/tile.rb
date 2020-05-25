@@ -1,19 +1,19 @@
 class Tile
   TILES = {
-    A: 1,  N: 1,
-    B: 3,  O: 1,
-    C: 3,  P: 3,
-    D: 2,  Q: 10,
-    E: 1,  R: 1,
-    F: 4,  S: 1,
-    G: 2,  T: 1,
-    H: 4,  U: 1,
-    I: 1,  V: 4,
-    J: 8,  W: 4,
-    K: 5,  X: 8,
-    L: 1,  Y: 4,
-    M: 3,  Z: 10,
-    ' ': 0
+    A: { VALUE: 1, QUANTITY: 9 },  N: { VALUE: 1,  QUANTITY: 6 },
+    B: { VALUE: 3, QUANTITY: 2 },  O: { VALUE: 1,  QUANTITY: 8 },
+    C: { VALUE: 3, QUANTITY: 2 },  P: { VALUE: 3,  QUANTITY: 2 },
+    D: { VALUE: 2, QUANTITY: 4 },  Q: { VALUE: 10, QUANTITY: 1 },
+    E: { VALUE: 1, QUANTITY: 12 }, R: { VALUE: 1,  QUANTITY: 6 },
+    F: { VALUE: 4, QUANTITY: 4 },  S: { VALUE: 1,  QUANTITY: 4 },
+    G: { VALUE: 2, QUANTITY: 3 },  T: { VALUE: 1,  QUANTITY: 6 },
+    H: { VALUE: 4, QUANTITY: 2 },  U: { VALUE: 1,  QUANTITY: 4 },
+    I: { VALUE: 1, QUANTITY: 9 },  V: { VALUE: 4,  QUANTITY: 2 },
+    J: { VALUE: 8, QUANTITY: 1 },  W: { VALUE: 4,  QUANTITY: 2 },
+    K: { VALUE: 5, QUANTITY: 1 },  X: { VALUE: 8,  QUANTITY: 1 },
+    L: { VALUE: 1, QUANTITY: 4 },  Y: { VALUE: 4,  QUANTITY: 2 },
+    M: { VALUE: 3, QUANTITY: 2 },  Z: { VALUE: 10, QUANTITY: 1 },
+    ' ': { VALUE: 0, QUANTITY: 2 }
   }
 
   def initialize(letters)
@@ -21,13 +21,11 @@ class Tile
   end
 
   protected
-
   attr_reader :letters
-  attr_accessor :values
 
   public
 
   def values
-    @values ||= letters.map(&TILES)
+    @values ||= letters.map { |tile| TILES[tile][:VALUE] }
   end
 end
