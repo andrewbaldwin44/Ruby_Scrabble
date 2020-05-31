@@ -8,12 +8,16 @@ Tile.include Scoring
 
 puts "\n#{"Welcome to Scrabble!".center(50)}\n\n\n"
 
-print "Please enter your word: "
-word = gets.chomp
+GAME_BOARD = Board.new
+puts GAME_BOARD.display
+
+print "\n\nPlease enter your letters: "
+letters = gets.chomp
 
 begin
-  puts "Your score was: #{Tile.new(word).score}\n\n"
+  GAME_BOARD.new_letters(letters)
+  puts "Your score was: #{GAME_BOARD.score}\n\n"
 rescue StandardError => e
-  puts e.message if $DEBUG
+  puts e.message
   puts "Your word must only contain valid tiles"
 end
