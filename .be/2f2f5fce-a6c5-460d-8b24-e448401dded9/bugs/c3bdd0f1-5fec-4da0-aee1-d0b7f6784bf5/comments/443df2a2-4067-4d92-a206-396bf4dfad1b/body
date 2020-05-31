@@ -1,0 +1,3 @@
+We should remove the fillers from the board
+array and add them in dynamically when we
+are creating the matrix display string.
