@@ -1,0 +1,50 @@
+{
+
+
+
+
+
+
+    "creator": "Victor Goff <keeperotphones@gmail.com>", 
+
+
+
+
+
+
+    "reporter": "Victor Goff <keeperotphones@gmail.com>", 
+
+
+
+
+
+
+    "severity": "minor", 
+
+
+
+
+
+
+    "status": "open", 
+
+
+
+
+
+
+    "summary": "Raise custom error when a letter is invalid", 
+
+
+
+
+
+
+    "time": "Sun, 31 May 2020 15:54:03 +0000"
+
+
+
+
+
+
+}

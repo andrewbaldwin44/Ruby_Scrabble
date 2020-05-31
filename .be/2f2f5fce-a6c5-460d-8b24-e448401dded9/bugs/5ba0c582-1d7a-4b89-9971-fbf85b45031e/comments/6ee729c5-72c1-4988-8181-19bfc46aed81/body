@@ -1,0 +1,14 @@
+Currently the error that happens deals with nil and is accurate,
+but not necessarily helpful to someone working with this class.
+
+Instead, we can check and raise (or use fail if we are
+purposefully failing) and give good information to the user to
+help them deal with this.
+
+```
+Please enter your letters: banana*s
+
+Exception `NoMethodError' at /home/vgoff/mentoring/andrew_baldwin/scrabble/lib/tile.rb:29 - undefined method `[]' for nil:NilClass
+undefined method `[]' for nil:NilClass
+Your word must only contain valid tiles
+```
