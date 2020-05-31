@@ -2,24 +2,24 @@ require_relative '../lib/tile'
 require_relative '../lib/scoring'
 
 class Board < Tile
-  SIZE = 15
-
-  def initialize(tiles, size = SIZE)
-    @game_tiles = Tile.new(tiles)
-    @values = @game_tiles.values
-    @size = size
+  def initialize
   end
 
   include Scoring
 
   private
 
-  attr_accessor :values
-  attr_reader :game_tiles, :size
+  attr_accessor :game_tiles, :values
 
   public
 
   attr_reader :values
+
+  def new_letters(letters)
+    @game_tiles = Tile.new(letters)
+    @values = @game_tiles.values
+    self
+  end
 
   def multiply(tiles, multiplier)
     tiles.chars.map do |tile|
