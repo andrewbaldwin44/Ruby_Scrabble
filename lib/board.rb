@@ -47,6 +47,10 @@ class Board < Tile
     self
   end
 
+  def place_letters
+    (0...game_tiles.letters.length).each { |index| self.board[7][index + 7] = " #{game_tiles.letters[index]}  " }
+  end
+
   def multiply(tiles, multiplier)
     tiles.chars.map do |tile|
       letter_index = game_tiles.letters.index(tile.upcase.intern)

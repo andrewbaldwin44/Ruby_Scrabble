@@ -15,7 +15,8 @@ print "\n\nPlease enter your letters: "
 letters = gets.chomp
 
 begin
-  GAME_BOARD.new_letters(letters)
+  GAME_BOARD.new_letters(letters).place_letters
+  puts GAME_BOARD.display
   puts "Your score was: #{GAME_BOARD.score}\n\n"
 rescue StandardError => e
   puts e.message
