@@ -6,7 +6,7 @@ require_relative "../lib/tile.rb"
 
 Tile.include Scoring
 
-puts "\n#{"Welcome to Scrabble!".center(50)}\n\n\n"
+welcome = 'Welcome to Scrabble!'.center(84)
 
 GAME_BOARD = Board.new
 puts GAME_BOARD.display
@@ -16,8 +16,14 @@ letters = gets.chomp
 
 begin
   GAME_BOARD.new_letters(letters).place_letters
-  puts GAME_BOARD.display
-  puts "Your score was: #{GAME_BOARD.score}\n\n"
+  puts <<~HEREDOC
+
+    #{GAME_BOARD.display}
+
+    Your score was: #{GAME_BOARD.score}
+
+
+  HEREDOC
 rescue StandardError => e
   puts e.message
   puts "Your word must only contain valid tiles"
