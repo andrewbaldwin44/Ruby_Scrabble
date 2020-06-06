@@ -2,16 +2,18 @@ require_relative '../lib/tile'
 require_relative '../lib/scoring'
 
 class Board < Tile
+  SIZE = 15
+
   def initialize
     @board = [
-      ['| 3w ', '    ', '    ', ' 2l ', '    ', '    ', '    ', ' 3w ', '    ', '    ', '    ', ' 2l ', '    ', '    ', ' 3w |'],
-      ['|    ', ' 2w ', '    ', '    ', '    ', ' 3l ', '    ', '    ', '    ', ' 3l ', '    ', '    ', '    ', ' 2w ', '    |'],
-      ['|    ', '    ', ' 2w ', '    ', '    ', '    ', ' 2l ', '    ', ' 2l ', '    ', '    ', '    ', ' 2w ', '    ', '    |'],
-      ['| 2l ', '    ', '    ', ' 2w ', '    ', '    ', '    ', ' 2l ', '    ', '    ', '    ', ' 2w ', '    ', '    ', ' 2l |'],
-      ['|    ', '    ', '    ', '    ', ' 2w ', '    ', '    ', '    ', '    ', '    ', ' 2w ', '    ', '    ', '    ', '    |'],
-      ['|    ', ' 3l ', '    ', '    ', '    ', ' 3l ', '    ', '    ', '    ', ' 3l ', '    ', '    ', '    ', ' 3l ', '    |'],
-      ['|    ', '    ', ' 2l ', '    ', '    ', '    ', ' 2l ', '    ', ' 2l ', '    ', '    ', '    ', ' 2l ', '    ', '    |'],
-      ['| 3w ', '    ', '    ', ' 2l ', '    ', '    ', '    ', ' ** ', '    ', '    ', '    ', ' 2l ', '    ', '    ', ' 3w |'],
+      [' 3w ', '    ', '    ', ' 2l ', '    ', '    ', '    ', ' 3w ', '    ', '    ', '    ', ' 2l ', '    ', '    ', ' 3w '],
+      ['    ', ' 2w ', '    ', '    ', '    ', ' 3l ', '    ', '    ', '    ', ' 3l ', '    ', '    ', '    ', ' 2w ', '    '],
+      ['    ', '    ', ' 2w ', '    ', '    ', '    ', ' 2l ', '    ', ' 2l ', '    ', '    ', '    ', ' 2w ', '    ', '    '],
+      [' 2l ', '    ', '    ', ' 2w ', '    ', '    ', '    ', ' 2l ', '    ', '    ', '    ', ' 2w ', '    ', '    ', ' 2l '],
+      ['    ', '    ', '    ', '    ', ' 2w ', '    ', '    ', '    ', '    ', '    ', ' 2w ', '    ', '    ', '    ', '    '],
+      ['    ', ' 3l ', '    ', '    ', '    ', ' 3l ', '    ', '    ', '    ', ' 3l ', '    ', '    ', '    ', ' 3l ', '    '],
+      ['    ', '    ', ' 2l ', '    ', '    ', '    ', ' 2l ', '    ', ' 2l ', '    ', '    ', '    ', ' 2l ', '    ', '    '],
+      [' 3w ', '    ', '    ', ' 2l ', '    ', '    ', '    ', ' ** ', '    ', '    ', '    ', ' 2l ', '    ', '    ', ' 3w '],
     ]
 
     (0...@board.length - 1).reverse_each { |index| @board << @board[index] }
@@ -29,14 +31,20 @@ class Board < Tile
   attr_reader :values
 
   def display
-    first_row = '|    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |'
-    row_seperator = '|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|'
+    row_markers = SIZE.times.each_with_object("") do |number, row_marker|
+      row_marker << " %3s".center(5) % (number + 1).to_s
+    end
 
-    board.each_with_index.each_with_object(matrix = "") do |row, index|
-      matrix << first_row + "\n" if index == 0
-      matrix << row_seperator + "\n"
-      matrix << row.join('|') + "\n"
-      matrix << row_seperator + "\n" if index == board.length - 1
+    row_seperator = (['|'] * 16).join('----')
+
+    board.each_with_index.each_with_object(matrix = "") do |(row, index)|
+      matrix << "   #{row_markers}\n" if index == 0
+      matrix << "   #{row_seperator}\n"
+      matrix << "%2s |#{row.join('|')}| %2s\n" % [index + 1, index + 1]
+      if index == board.length - 1
+        matrix << "   #{row_seperator}\n"
+        matrix << "   #{row_markers}\n"
+      end
       matrix
     end
   end
