@@ -41,27 +41,6 @@ class Board < Tile
   attr_accessor :board
   attr_reader :values
 
-  def display
-    row_markers = SIZE.times.each_with_object("") do |number, row_marker|
-      row_marker << " %3s".center(5) % (number + 1).to_s
-    end
-
-    row_seperator = (['|'] * 16).join('----')
-
-    board_display = board.map { |row| row.map { |square| square.to_s.center(4) }}
-
-    board_display.each_with_index.each_with_object(matrix = "") do |(row, index)|
-      matrix << "   #{row_markers}\n" if index == 0
-      matrix << "   #{row_seperator}\n"
-      matrix << "%2s |#{row.join('|')}| %2s\n" % [index + 1, index + 1]
-      if index == board.length - 1
-        matrix << "   #{row_seperator}\n"
-        matrix << "   #{row_markers}\n"
-      end
-      matrix
-    end
-  end
-
   def new_letters(letters)
     @game_tiles = Tile.new(letters)
     @values = @game_tiles.values
@@ -83,5 +62,26 @@ class Board < Tile
   def word_times(multiplier)
     self.values = values.map { |value| value * multiplier}
     self
+  end
+
+  def to_s
+    row_markers = SIZE.times.each_with_object("") do |number, row_marker|
+      row_marker << " %3s".center(5) % (number + 1).to_s
+    end
+
+    row_seperator = (['|'] * 16).join('----')
+
+    board_display = board.map { |row| row.map { |square| square.to_s.center(4) }}
+
+    board_display.each_with_index.each_with_object(matrix = "") do |(row, index)|
+      matrix << "   #{row_markers}\n" if index == 0
+      matrix << "   #{row_seperator}\n"
+      matrix << "%2s |#{row.join('|')}| %2s\n" % [index + 1, index + 1]
+      if index == board.length - 1
+        matrix << "   #{row_seperator}\n"
+        matrix << "   #{row_markers}\n"
+      end
+      matrix
+    end
   end
 end

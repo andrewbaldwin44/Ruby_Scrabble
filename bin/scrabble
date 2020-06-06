@@ -9,7 +9,7 @@ Tile.include Scoring
 welcome = 'Welcome to Scrabble!'.center(84)
 
 GAME_BOARD = Board.new
-puts GAME_BOARD.display
+puts GAME_BOARD
 
 print "\n\nPlease enter your letters: "
 letters = gets.chomp
@@ -18,7 +18,7 @@ begin
   GAME_BOARD.new_letters(letters).place_letters
   puts <<~HEREDOC
 
-    #{GAME_BOARD.display}
+    #{GAME_BOARD}
 
     Your score was: #{GAME_BOARD.score}
 
