@@ -4,19 +4,30 @@ require_relative '../lib/scoring'
 class Board < Tile
   SIZE = 15
 
-  def initialize
-    @board = [
-      [' 3w ', '    ', '    ', ' 2l ', '    ', '    ', '    ', ' 3w ', '    ', '    ', '    ', ' 2l ', '    ', '    ', ' 3w '],
-      ['    ', ' 2w ', '    ', '    ', '    ', ' 3l ', '    ', '    ', '    ', ' 3l ', '    ', '    ', '    ', ' 2w ', '    '],
-      ['    ', '    ', ' 2w ', '    ', '    ', '    ', ' 2l ', '    ', ' 2l ', '    ', '    ', '    ', ' 2w ', '    ', '    '],
-      [' 2l ', '    ', '    ', ' 2w ', '    ', '    ', '    ', ' 2l ', '    ', '    ', '    ', ' 2w ', '    ', '    ', ' 2l '],
-      ['    ', '    ', '    ', '    ', ' 2w ', '    ', '    ', '    ', '    ', '    ', ' 2w ', '    ', '    ', '    ', '    '],
-      ['    ', ' 3l ', '    ', '    ', '    ', ' 3l ', '    ', '    ', '    ', ' 3l ', '    ', '    ', '    ', ' 3l ', '    '],
-      ['    ', '    ', ' 2l ', '    ', '    ', '    ', ' 2l ', '    ', ' 2l ', '    ', '    ', '    ', ' 2l ', '    ', '    '],
-      [' 3w ', '    ', '    ', ' 2l ', '    ', '    ', '    ', ' ** ', '    ', '    ', '    ', ' 2l ', '    ', '    ', ' 3w '],
-    ]
+  m3w = '3W'
+  m2w = '2W'
+  m3l = '3L'
+  m2l = '2L'
+  BOARD = [
+    [m3w, nil, nil, m2l, nil, nil, nil, m3w, nil, nil, nil, m2l, nil, nil, m3w],
+    [nil, m2w, nil, nil, nil, m3l, nil, nil, nil, m3l, nil, nil, nil, m2w, nil],
+    [nil, nil, m2w, nil, nil, nil, m2l, nil, m2l, nil, nil, nil, m2w, nil, nil],
+    [m2l, nil, nil, m2w, nil, nil, nil, m2l, nil, nil, nil, m2w, nil, nil, m2l],
+    [nil, nil, nil, nil, m2w, nil, nil, nil, nil, nil, m2w, nil, nil, nil, nil],
+    [nil, m3l, nil, nil, nil, m3l, nil, nil, nil, m3l, nil, nil, nil, m3l, nil],
+    [nil, nil, m2l, nil, nil, nil, m2l, nil, m2l, nil, nil, nil, m2l, nil, nil],
+    [m3w, nil, nil, m2l, nil, nil, nil, '**', nil, nil, nil, m2l, nil, nil, m3w],
+    [nil, nil, m2l, nil, nil, nil, m2l, nil, m2l, nil, nil, nil, m2l, nil, nil],
+    [nil, m3l, nil, nil, nil, m3l, nil, nil, nil, m3l, nil, nil, nil, m3l, nil],
+    [nil, nil, nil, nil, m2w, nil, nil, nil, nil, nil, m2w, nil, nil, nil, nil],
+    [m2l, nil, nil, m2w, nil, nil, nil, m2l, nil, nil, nil, m2w, nil, nil, m2l],
+    [nil, nil, m2w, nil, nil, nil, m2l, nil, m2l, nil, nil, nil, m2w, nil, nil],
+    [nil, m2w, nil, nil, nil, m3l, nil, nil, nil, m3l, nil, nil, nil, m2w, nil],
+    [m3w, nil, nil, m2l, nil, nil, nil, m3w, nil, nil, nil, m2l, nil, nil, m3w],
+  ]
 
-    (0...@board.length - 1).reverse_each { |index| @board << @board[index] }
+  def initialize(board = BOARD)
+    @board = BOARD
   end
 
   include Scoring
@@ -37,7 +48,9 @@ class Board < Tile
 
     row_seperator = (['|'] * 16).join('----')
 
-    board.each_with_index.each_with_object(matrix = "") do |(row, index)|
+    board_display = board.map { |row| row.map { |square| square.to_s.center(4) }}
+
+    board_display.each_with_index.each_with_object(matrix = "") do |(row, index)|
       matrix << "   #{row_markers}\n" if index == 0
       matrix << "   #{row_seperator}\n"
       matrix << "%2s |#{row.join('|')}| %2s\n" % [index + 1, index + 1]
