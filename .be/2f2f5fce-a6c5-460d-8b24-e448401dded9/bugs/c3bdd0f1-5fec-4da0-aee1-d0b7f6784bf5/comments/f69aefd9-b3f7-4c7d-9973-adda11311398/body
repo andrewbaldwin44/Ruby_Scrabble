@@ -1,0 +1,10 @@
+We have decided against that, as shown in commit
+4c3ebf6eda71977348af9e6b921b557b1aaa14a9
+
+We discussed it in patches, and accepted it in regards to:
+
+https://lists.sr.ht/~kotp/coding_with_andrew/patches/10909
+
+Please forgive the noisy patchset, patches 1/4..4/4 were applied, the
+rest were addressed in other patchsets.
+

@@ -1,0 +1,7 @@
+The current error handling is done in the client, and that is
+somewhat suitable.  The Tile class probably has room to validate
+based on information provided in the collection of tiles.
+
+bin/scrabble is using StandardError when raising an error, but we
+may do better.  At least it should be an InputError as that is
+more informative and precise.

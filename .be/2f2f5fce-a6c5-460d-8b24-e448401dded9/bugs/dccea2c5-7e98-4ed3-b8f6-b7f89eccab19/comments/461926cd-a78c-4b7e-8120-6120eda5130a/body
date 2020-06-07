@@ -1,0 +1,3 @@
+In our pair programming session we talked about how to test an
+executable file, the idea is to prepare a "golden text" and a set
+of input directives, and report if things change when it runs.
