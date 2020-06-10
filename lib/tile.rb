@@ -1,3 +1,5 @@
+require_relative '../lib/exceptions'
+
 class Tile
   TILES = {
     A: { VALUE: 1, QUANTITY: 9 },  N: { VALUE: 1,  QUANTITY: 6 },
@@ -26,6 +28,9 @@ class Tile
   public
 
   def values
-    @values ||= letters.map { |tile| TILES[tile][:VALUE] }
+    @values ||= letters.map do |tile|
+      raise TileError.new('Invalid Tiles') unless TILES.include?(tile)
+      value = TILES[tile][:VALUE]
+    end
   end
 end

@@ -16,7 +16,7 @@ letters = gets.chomp
 
 begin
   GAME_BOARD.new_letters(letters).place_letters
-  puts <<~HEREDOC
+  board_display = <<~HEREDOC
 
     #{GAME_BOARD}
 
@@ -24,7 +24,8 @@ begin
 
 
   HEREDOC
-rescue StandardError => e
+  puts board_display % {board: GAME_BOARD, score: GAME_BOARD.score}
+rescue TileError => e
   puts e.message
   puts "Your word must only contain valid tiles"
 end
