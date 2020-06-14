@@ -7,6 +7,14 @@ require_relative "../lib/tile.rb"
 Tile.include Scoring
 
 welcome = 'Welcome to Scrabble!'.center(84)
+board_display = <<~HEREDOC
+
+  %<board>s
+
+  Your score was: %<score>s
+
+
+HEREDOC
 
 GAME_BOARD = Board.new
 puts GAME_BOARD
@@ -16,14 +24,7 @@ letters = gets.chomp
 
 begin
   GAME_BOARD.new_letters(letters).place_letters
-  board_display = <<~HEREDOC
 
-    #{GAME_BOARD}
-
-    Your score was: #{GAME_BOARD.score}
-
-
-  HEREDOC
   puts board_display % {board: GAME_BOARD, score: GAME_BOARD.score}
 rescue TileError => e
   puts e.message
