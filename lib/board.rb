@@ -3,6 +3,10 @@ require_relative '../lib/scoring'
 
 class Board < Tile
   SIZE = 15
+  CENTER = 7
+  FIELD_WIDTH = 4
+  BOARD_OFFSET = 6
+  COORDINATE_WIDTH = 2
 
   m3w = '3W'
   m2w = '2W'
@@ -48,7 +52,10 @@ class Board < Tile
   end
 
   def place_letters
-    (0...game_tiles.letters.length).each { |index| self.board[7][index + 7] = " #{game_tiles.letters[index]}  " }
+    game_tiles.letters.length.times do |index|
+      self.board[CENTER][index + CENTER] =
+        "%<letter>s" % [letter: game_tiles.letters[index]]
+    end
   end
 
   def multiply(tiles, multiplier)
@@ -64,24 +71,29 @@ class Board < Tile
     self
   end
 
-  def to_s
+  def matrix()
     row_markers = SIZE.times.each_with_object("") do |number, row_marker|
-      row_marker << " %3s".center(5) % (number + 1).to_s
+      row_marker << "%#{BOARD_OFFSET - COORDINATE_WIDTH}s".center(FIELD_WIDTH) % number.next
     end
 
-    row_seperator = (['|'] * 16).join('----')
+    row_seperator = (['|'] * SIZE.next).join('-' * FIELD_WIDTH)
 
-    board_display = board.map { |row| row.map { |square| square.to_s.center(4) }}
+    matrix = "%s\n".rjust(BOARD_OFFSET) % row_markers
 
-    board_display.each_with_index.each_with_object(matrix = "") do |(row, index)|
-      matrix << "   #{row_markers}\n" if index == 0
-      matrix << "   #{row_seperator}\n"
-      matrix << "%2s |#{row.join('|')}| %2s\n" % [index + 1, index + 1]
-      if index == board.length - 1
-        matrix << "   #{row_seperator}\n"
-        matrix << "   #{row_markers}\n"
-      end
-      matrix
+    board_display = board.map { |row| row.map { |square| square.to_s.center(FIELD_WIDTH) }}
+
+    board_display.each_with_index.each_with_object(matrix) do |(row, index)|
+      matrix << "%s\n".rjust(BOARD_OFFSET) % row_seperator
+      matrix <<
+        "%#{COORDINATE_WIDTH}s |#{row.join('|')}| %#{COORDINATE_WIDTH}s\n" \
+        % [index.next, index.next]
     end
+
+    matrix << "%s\n".rjust(BOARD_OFFSET) % row_seperator
+    matrix << "%s\n".rjust(BOARD_OFFSET) % row_markers
+  end
+
+  def to_s
+    matrix
   end
 end
