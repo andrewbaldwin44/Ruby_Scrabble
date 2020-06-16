@@ -1,8 +1,12 @@
-# Andrew's Scrabble Exploration
+# Andrew's Scrabble™ Exploration
 
-Scrabble is a word game owned by, last I knew, Hasbro.
+The name Scrabble™ is a trademark of Mattel in most of the world, except
+in the United States and Canada, where it is a trademark of Hasbro.  The
+game is sold in 121 countries and is available in 29 languages;
+approximately 150 million sets have been sold worldwide, and roughly
+one-third of American and half of British homes have a Scrabble set.
 
-So their trademark.
+[Scrabble Wiki](https://en.wikipedia.org/wiki/Scrabble)
 
 We will be using this well known game to learn programming, project
 management, code design, etc.
