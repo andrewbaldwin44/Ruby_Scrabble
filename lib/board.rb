@@ -60,7 +60,7 @@ class Board < Tile
 
   def multiply(tiles, multiplier)
     tiles.chars.map do |tile|
-      letter_index = game_tiles.letters.index(tile.upcase.intern)
+      letter_index = game_tiles.letters.index(tile.upcase)
       self.values[letter_index] = values[letter_index] * multiplier
     end
     self
