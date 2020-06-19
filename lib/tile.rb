@@ -19,7 +19,9 @@ class Tile
   }
 
   def initialize(letters)
-    @letters = letters.upcase.chars
+    @letters = letters.upcase.chars.each do |letter|
+      raise TileError unless TILES.include?(letter)
+    end
   end
 
   protected
@@ -28,9 +30,6 @@ class Tile
   public
 
   def values
-    @values ||= letters.map do |tile|
-      raise TileError unless TILES.include?(tile)
-      value = TILES[tile][:value]
-    end
+    @values ||= letters.map { |tile| TILES[tile][:value] }
   end
 end
