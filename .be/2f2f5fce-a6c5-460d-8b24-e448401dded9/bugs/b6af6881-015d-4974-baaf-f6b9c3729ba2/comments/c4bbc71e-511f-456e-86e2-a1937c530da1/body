@@ -1,0 +1,3 @@
+A tile placement error should be raised if
+the coordinates given are invalid or the 
+word is too long to fit on the board.
