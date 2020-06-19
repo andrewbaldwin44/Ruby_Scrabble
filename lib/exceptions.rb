@@ -1,7 +1,5 @@
 class TileError < StandardError
-  def initialize(message)
-    @message = message
+  def initialize
+    super
   end
-
-  attr_reader :message
 end

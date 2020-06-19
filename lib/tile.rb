@@ -29,7 +29,7 @@ class Tile
 
   def values
     @values ||= letters.map do |tile|
-      raise TileError.new('Invalid Tiles') unless TILES.include?(tile)
+      raise TileError unless TILES.include?(tile)
       value = TILES[tile][:VALUE]
     end
   end
