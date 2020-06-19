@@ -2,20 +2,20 @@ require_relative '../lib/exceptions'
 
 class Tile
   TILES = {
-    'A' => { VALUE: 1, QUANTITY: 9 },  'N' => { VALUE: 1,  QUANTITY: 6 },
-    'B' => { VALUE: 3, QUANTITY: 2 },  'O' => { VALUE: 1,  QUANTITY: 8 },
-    'C' => { VALUE: 3, QUANTITY: 2 },  'P' => { VALUE: 3,  QUANTITY: 2 },
-    'D' => { VALUE: 2, QUANTITY: 4 },  'Q' => { VALUE: 10, QUANTITY: 1 },
-    'E' => { VALUE: 1, QUANTITY: 12 }, 'R' => { VALUE: 1,  QUANTITY: 6 },
-    'F' => { VALUE: 4, QUANTITY: 4 },  'S' => { VALUE: 1,  QUANTITY: 4 },
-    'G' => { VALUE: 2, QUANTITY: 3 },  'T' => { VALUE: 1,  QUANTITY: 6 },
-    'H' => { VALUE: 4, QUANTITY: 2 },  'U' => { VALUE: 1,  QUANTITY: 4 },
-    'I' => { VALUE: 1, QUANTITY: 9 },  'V' => { VALUE: 4,  QUANTITY: 2 },
-    'J' => { VALUE: 8, QUANTITY: 1 },  'W' => { VALUE: 4,  QUANTITY: 2 },
-    'K' => { VALUE: 5, QUANTITY: 1 },  'X' => { VALUE: 8,  QUANTITY: 1 },
-    'L' => { VALUE: 1, QUANTITY: 4 },  'Y' => { VALUE: 4,  QUANTITY: 2 },
-    'M' => { VALUE: 3, QUANTITY: 2 },  'Z' => { VALUE: 10, QUANTITY: 1 },
-    ' ' => { VALUE: 0, QUANTITY: 2 }
+    'A' => { value: 1, quantity: 9 },  'N' => { value: 1,  quantity: 6 },
+    'B' => { value: 3, quantity: 2 },  'O' => { value: 1,  quantity: 8 },
+    'C' => { value: 3, quantity: 2 },  'P' => { value: 3,  quantity: 2 },
+    'D' => { value: 2, quantity: 4 },  'Q' => { value: 10, quantity: 1 },
+    'E' => { value: 1, quantity: 12 }, 'R' => { value: 1,  quantity: 6 },
+    'F' => { value: 4, quantity: 4 },  'S' => { value: 1,  quantity: 4 },
+    'G' => { value: 2, quantity: 3 },  'T' => { value: 1,  quantity: 6 },
+    'H' => { value: 4, quantity: 2 },  'U' => { value: 1,  quantity: 4 },
+    'I' => { value: 1, quantity: 9 },  'V' => { value: 4,  quantity: 2 },
+    'J' => { value: 8, quantity: 1 },  'W' => { value: 4,  quantity: 2 },
+    'K' => { value: 5, quantity: 1 },  'X' => { value: 8,  quantity: 1 },
+    'L' => { value: 1, quantity: 4 },  'Y' => { value: 4,  quantity: 2 },
+    'M' => { value: 3, quantity: 2 },  'Z' => { value: 10, quantity: 1 },
+    ' ' => { value: 0, quantity: 2 }
   }
 
   def initialize(letters)
@@ -30,7 +30,7 @@ class Tile
   def values
     @values ||= letters.map do |tile|
       raise TileError unless TILES.include?(tile)
-      value = TILES[tile][:VALUE]
+      value = TILES[tile][:value]
     end
   end
 end
