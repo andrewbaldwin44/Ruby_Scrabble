@@ -2,11 +2,13 @@ require_relative '../lib/tile'
 require_relative '../lib/scoring'
 
 class Board < Tile
-  SIZE = 15
-  CENTER = 7
-  FIELD_WIDTH = 4
-  BOARD_OFFSET = 6
-  COORDINATE_WIDTH = 2
+  Geometry = {
+    size: 15,
+    center: 7,
+    field_width: 4,
+    board_offset: 6,
+    coordinate_width: 2
+  }
 
   m3w = '3W'
   m2w = '2W'
@@ -53,7 +55,7 @@ class Board < Tile
 
   def place_letters
     game_tiles.letters.length.times do |index|
-      self.board[CENTER][index + CENTER] =
+      self.board[Geometry[:center]][index + Geometry[:center]] =
         "%<letter>s" % [letter: game_tiles.letters[index]]
     end
   end
@@ -72,25 +74,29 @@ class Board < Tile
   end
 
   def matrix()
-    row_markers = SIZE.times.each_with_object("") do |number, row_marker|
-      row_marker << "%#{BOARD_OFFSET - COORDINATE_WIDTH}s".center(FIELD_WIDTH) % number.next
+    row_markers = Geometry[:size].times.each_with_object("") do |number, row_marker|
+      actual_width = Geometry[:board_offset] - Geometry[:coordinate_width]
+      row_marker << "%#{actual_width}s".center(Geometry[:field_width]) % number.next
     end
 
-    row_seperator = (['|'] * SIZE.next).join('-' * FIELD_WIDTH)
+    row_seperator = (['|'] * Geometry[:size].next).join('-' * Geometry[:field_width])
 
-    matrix = "%s\n".rjust(BOARD_OFFSET) % row_markers
+    matrix = "%s\n".rjust(Geometry[:board_offset]) % row_markers
 
-    board_display = board.map { |row| row.map { |square| square.to_s.center(FIELD_WIDTH) }}
+    board_display = board.map { |row| row.map do |square|
+      square.to_s.center(Geometry[:field_width])
+    end
+    }
 
     board_display.each_with_index.each_with_object(matrix) do |(row, index)|
-      matrix << "%s\n".rjust(BOARD_OFFSET) % row_seperator
+      matrix << "%s\n".rjust(Geometry[:board_offset]) % row_seperator
       matrix <<
-        "%#{COORDINATE_WIDTH}s |#{row.join('|')}| %#{COORDINATE_WIDTH}s\n" \
-        % [index.next, index.next]
+      "%#{Geometry[:coordinate_width]}s |#{row.join('|')}| %#{Geometry[:coordinate_width]}s\n" %
+        [index.next, index.next]
     end
 
-    matrix << "%s\n".rjust(BOARD_OFFSET) % row_seperator
-    matrix << "%s\n".rjust(BOARD_OFFSET) % row_markers
+    matrix << "%s\n".rjust(Geometry[:board_offset]) % row_seperator
+    matrix << "%s\n".rjust(Geometry[:board_offset]) % row_markers
   end
 
   def to_s
