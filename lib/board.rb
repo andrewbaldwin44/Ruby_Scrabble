@@ -80,9 +80,8 @@ class Board < Tile
     end
 
     row_seperator = (['|'] * Geometry[:size].next).join('-' * Geometry[:field_width])
-    offset_row = "%s\n".rjust(Geometry[:board_offset])
 
-    matrix = offset_row % row_markers
+    matrix = "%s\n".rjust(Geometry[:board_offset]) % row_markers
 
     board_display = board.map { |row| row.map do |square|
       square.to_s.center(Geometry[:field_width])
