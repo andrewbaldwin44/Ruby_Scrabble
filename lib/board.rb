@@ -80,8 +80,9 @@ class Board < Tile
     end
 
     row_seperator = (['|'] * Geometry[:size].next).join('-' * Geometry[:field_width])
+    offset_row = "%s\n".rjust(Geometry[:board_offset])
 
-    matrix = "%s\n".rjust(Geometry[:board_offset]) % row_markers
+    matrix = offset_row % row_markers
 
     board_display = board.map { |row| row.map do |square|
       square.to_s.center(Geometry[:field_width])
@@ -89,14 +90,14 @@ class Board < Tile
     }
 
     board_display.each_with_index.each_with_object(matrix) do |(row, index)|
-      matrix << "%s\n".rjust(Geometry[:board_offset]) % row_seperator
+      matrix << offset_row % row_seperator
       matrix <<
       "%#{Geometry[:coordinate_width]}s |#{row.join('|')}| %#{Geometry[:coordinate_width]}s\n" %
         [index.next, index.next]
     end
 
-    matrix << "%s\n".rjust(Geometry[:board_offset]) % row_seperator
-    matrix << "%s\n".rjust(Geometry[:board_offset]) % row_markers
+    matrix << offset_row % row_seperator
+    matrix << offset_row % row_markers
   end
 
   def to_s
