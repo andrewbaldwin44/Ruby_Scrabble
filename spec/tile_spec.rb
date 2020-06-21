@@ -13,7 +13,9 @@ describe Tile do
   end
 
   it 'must evaluate a long word' do
-    expect(Tile.new('discombobulated').values).must_equal [2, 1, 1, 3, 1, 3, 3, 1, 3, 1, 1, 1, 1, 1, 2]
+    expected = [2, 1, 1, 3, 1, 3, 3, 1, 3, 1, 1, 1, 1, 1, 2]
+    tiles = Tile.new('discombobulated')
+    expect(tiles.values).must_equal expected
   end
 
   it 'must evaluate a word with capitilization' do
