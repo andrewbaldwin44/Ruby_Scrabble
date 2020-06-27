@@ -35,4 +35,9 @@ describe Tile do
       assert_raises(TileError) {Tile.new('fa%slure' % invalid_character).values}
     end
   end
+
+  it 'must provide a helpful exception message' do
+    exception = expect(-> {Tile.new('!').values}).must_raise(TileError)
+    expect(exception.message).must_match(/invalid/i)
+  end
 end
