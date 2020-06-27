@@ -30,11 +30,9 @@ describe Tile do
     expect(Tile.new('qui otic').values).must_equal [10, 1, 1, 0, 1, 1, 1, 3]
   end
 
-  it 'must raise a TileError when given invalid @ tile' do
-    assert_raises(TileError) {Tile.new('fa@lure').values}
-  end
-
   it 'must raise a TileError when given any invalid tile' do
-    assert_raises(TileError) {Tile.new('fa|lure').values}
+    ['!', '?', '%', '…', '|', '@'].each do |invalid_character|
+      assert_raises(TileError) {Tile.new('fa%slure' % invalid_character).values}
+    end
   end
 end
