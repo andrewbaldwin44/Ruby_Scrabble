@@ -20,7 +20,7 @@ class Tile
 
   def initialize(letters)
     @letters = letters.upcase.chars.each do |letter|
-      raise TileError unless TILES.include?(letter)
+      raise TileError, '%s is invalid' % letter.inspect unless TILES.include?(letter)
     end
   end
 
